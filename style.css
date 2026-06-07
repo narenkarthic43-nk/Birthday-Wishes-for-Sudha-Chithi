@@ -346,7 +346,8 @@ body {
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center; /* center all main dashboard children */
+  align-items: center;
+  /* center all main dashboard children */
   gap: 35px;
   animation: fadeInContainer 1s forwards ease-in-out;
 }
@@ -481,13 +482,48 @@ body {
   transform: scale(1);
   transition: opacity 0.8s ease, transform 0.8s ease;
   position: relative;
-  background-image: linear-gradient(rgba(10, 3, 18, 0.82), rgba(22, 10, 40, 0.88)), url('https://little-pond-461.linkyhost.com');
+  background-image: linear-gradient(rgba(10, 3, 18, 0.82), rgba(22, 10, 40, 0.88)), url('photos.pdf/WhatsApp%20Image%202026-06-07%20at%2011.09.57%20PM.jpeg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  width: 100%; /* take full width on mobile */
-  max-width: 600px; /* keep bounded on desktop */
-  margin: 0 auto; /* center horizontally */
+  width: 100%;
+  /* take full width on mobile */
+  max-width: 600px;
+  /* keep bounded on desktop */
+  margin: 0 auto;
+  /* center horizontally */
+  overflow: hidden;
+}
+
+#wishes-section > *:not(.wishes-bg-layer-1):not(.wishes-bg-layer-2) {
+  position: relative;
+  z-index: 3;
+}
+
+.wishes-bg-layer-1, .wishes-bg-layer-2 {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: opacity 1.5s ease-in-out;
+  pointer-events: none;
+  animation: kenBurnsPan 25s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurnsPan {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.08) translate(-2%, -1%);
+  }
+  100% {
+    transform: scale(1.15) translate(1%, 2%);
+  }
 }
 
 .celebration-grid {
@@ -807,7 +843,8 @@ body {
   color: var(--text-primary);
   margin-bottom: 15px;
   position: relative;
-  text-align: center; /* center-align quote text */
+  text-align: center;
+  /* center-align quote text */
 }
 
 .wish-quote::before {
@@ -817,8 +854,10 @@ body {
   color: rgba(255, 64, 129, 0.2);
   position: absolute;
   top: -25px;
-  left: 50%; /* center quote mark horizontally */
-  transform: translateX(-50%); /* center offset correction */
+  left: 50%;
+  /* center quote mark horizontally */
+  transform: translateX(-50%);
+  /* center offset correction */
 }
 
 .wish-author {
@@ -828,7 +867,8 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
-  text-align: center; /* center-align author text */
+  text-align: center;
+  /* center-align author text */
   display: block;
 }
 

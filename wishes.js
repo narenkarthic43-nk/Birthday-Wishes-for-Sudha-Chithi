@@ -1,20 +1,20 @@
 // --- CAROUSEL SLIDER ENGINE ---
-function setupCarousel(containerSelector, autoplayInterval = null) {
+function setupCarousel(containerSelector, autoplayInterval = null, onSlideChange = null) {
   const container = document.querySelector(containerSelector);
   if (!container) {
     console.warn(`Carousel container ${containerSelector} not found`);
     return;
   }
-  
+
   const track = container.querySelector('.carousel-track');
   if (!track) {
     console.warn(`Carousel track not found in ${containerSelector}`);
     return;
   }
-  
+
   const slides = Array.from(track.children);
   if (slides.length === 0) return;
-  
+
   const nextBtn = container.querySelector('.next-btn');
   const prevBtn = container.querySelector('.prev-btn');
   const indicatorsContainer = container.querySelector('.carousel-indicators');
@@ -29,7 +29,15 @@ function setupCarousel(containerSelector, autoplayInterval = null) {
     slides.forEach(slide => {
       const img = slide.querySelector('img');
       if (img) {
-        slide.style.backgroundImage = `url('${img.getAttribute('src')}')`;
+        const updateBg = () => {
+          slide.style.backgroundImage = `url('${img.src}')`;
+        };
+        img.addEventListener('load', updateBg);
+        if (img.complete && img.naturalWidth > 0) {
+          updateBg();
+        } else {
+          slide.style.backgroundImage = `url('${img.src}')`;
+        }
       }
     });
   }
@@ -49,7 +57,7 @@ function setupCarousel(containerSelector, autoplayInterval = null) {
   }
 
   const counterContainer = container.querySelector('.carousel-counter');
-  
+
   const updateCounter = () => {
     if (counterContainer) {
       counterContainer.textContent = `${activeIndex + 1} / ${slides.length}`;
@@ -71,6 +79,10 @@ function setupCarousel(containerSelector, autoplayInterval = null) {
 
     updateCounter();
     track.style.transform = `translateX(-${activeIndex * 100}%)`;
+
+    if (onSlideChange) {
+      onSlideChange(activeIndex);
+    }
   };
 
   // Set initial counter value
@@ -91,7 +103,7 @@ function setupCarousel(containerSelector, autoplayInterval = null) {
       if (autoplayInterval) restartAutoplay();
     });
   }
-  
+
   if (indicatorsContainer) {
     Array.from(indicatorsContainer.children).forEach((dot, index) => {
       dot.addEventListener('click', () => {
@@ -123,6 +135,42 @@ function setupCarousel(containerSelector, autoplayInterval = null) {
   }
 }
 
+// Function to resolve direct image links from Imghippo viewer URLs
+function resolveDirectImage(imgElement, originalUrl) {
+  if (!originalUrl || !originalUrl.includes('imghippo.com/i/')) {
+    imgElement.src = originalUrl || '';
+    return;
+  }
+
+  const match = originalUrl.match(/\/i\/([a-zA-Z0-9]+)/);
+  if (!match) {
+    imgElement.src = originalUrl;
+    return;
+  }
+
+  const id = match[1];
+  const extensions = ['jpg', 'png', 'jpeg', 'webp'];
+  let attempt = 0;
+
+  function tryNext() {
+    if (attempt < extensions.length) {
+      const ext = extensions[attempt];
+      attempt++;
+      imgElement.src = `https://i.imghippo.com/files/${id}.${ext}`;
+    } else {
+      // Clear onerror handler to prevent infinite recursive loop if originalUrl also fails
+      imgElement.onerror = null;
+      imgElement.src = originalUrl;
+    }
+  }
+
+  imgElement.onerror = function () {
+    tryNext();
+  };
+
+  tryNext();
+}
+
 // Pre-load floating background images
 const floatingImages = [
   'https://www.imghippo.com/i/Cdf8268GiA.jpeg',
@@ -137,7 +185,7 @@ const floatingImages = [
   'https://www.imghippo.com/i/JO3209ZJk.jpeg'
 ].map(url => {
   const img = new Image();
-  img.src = url;
+  resolveDirectImage(img, url);
   return img;
 });
 
@@ -397,7 +445,7 @@ function initPartyPopper() {
     releaseConfettiBurst();
     console.log('Confetti triggered manually');
   });
-  
+
   // Auto-trigger confetti every 8 seconds for continuous celebration
   setInterval(() => {
     releaseConfettiBurst();
@@ -410,7 +458,7 @@ let galleryAutoPlayInterval = null;
 function initGallery() {
   const prevBtn = document.getElementById('gallery-prev-btn');
   const nextBtn = document.getElementById('gallery-next-btn');
-  
+
   if (!prevBtn || !nextBtn) {
     return;
   }
@@ -462,17 +510,8 @@ function displayGalleryImage(index) {
   wrapper.className = 'gallery-image-wrapper';
 
   const img = document.createElement('img');
-  img.src = galleryImages[index];
   img.alt = `Memory ${index + 1}`;
-  
-  img.onerror = function() {
-    console.error('Failed to load image:', galleryImages[index]);
-    wrapper.textContent = 'Image not found: ' + galleryImages[index];
-  };
-  
-  img.onload = function() {
-    console.log('Image loaded:', galleryImages[index]);
-  };
+  resolveDirectImage(img, galleryImages[index]);
 
   wrapper.appendChild(img);
   galleryGrid.appendChild(wrapper);
@@ -482,18 +521,106 @@ function displayGalleryImage(index) {
   }
 }
 
+// --- WISHES CARD BACKGROUND SLIDESHOW ---
+let wishesBackgrounds = [];
+
+function updateWishesBackground(index) {
+  if (wishesBackgrounds.length === 0) return;
+  const wishesSection = document.getElementById('wishes-section');
+  if (!wishesSection) return;
+  
+  const bgUrl = wishesBackgrounds[index % wishesBackgrounds.length];
+  
+  let bgLayer1 = wishesSection.querySelector('.wishes-bg-layer-1');
+  let bgLayer2 = wishesSection.querySelector('.wishes-bg-layer-2');
+  
+  if (!bgLayer1) {
+    bgLayer1 = document.createElement('div');
+    bgLayer1.className = 'wishes-bg-layer-1';
+    bgLayer1.style.backgroundImage = `linear-gradient(rgba(10, 3, 18, 0.82), rgba(22, 10, 40, 0.88)), url('${bgUrl}')`;
+    bgLayer1.style.opacity = '1';
+    bgLayer1.style.zIndex = '1';
+    wishesSection.insertBefore(bgLayer1, wishesSection.firstChild);
+    return;
+  }
+  
+  if (!bgLayer2) {
+    bgLayer2 = document.createElement('div');
+    bgLayer2.className = 'wishes-bg-layer-2';
+    bgLayer2.style.opacity = '0';
+    bgLayer2.style.zIndex = '0';
+    wishesSection.insertBefore(bgLayer2, wishesSection.firstChild);
+  }
+  
+  const gradient = 'linear-gradient(rgba(10, 3, 18, 0.82), rgba(22, 10, 40, 0.88))';
+  
+  if (bgLayer1.style.opacity === '1' || bgLayer1.style.opacity === '') {
+    bgLayer2.style.backgroundImage = `${gradient}, url('${bgUrl}')`;
+    bgLayer2.style.opacity = '1';
+    bgLayer2.style.zIndex = '2';
+    bgLayer1.style.opacity = '0';
+    bgLayer1.style.zIndex = '1';
+  } else {
+    bgLayer1.style.backgroundImage = `${gradient}, url('${bgUrl}')`;
+    bgLayer1.style.opacity = '1';
+    bgLayer1.style.zIndex = '2';
+    bgLayer2.style.opacity = '0';
+    bgLayer2.style.zIndex = '1';
+  }
+}
+
+function initWishesBackgroundSlideshow() {
+  const candidates = [
+    'photos.pdf/WhatsApp Image 2026-06-07 at 11.09.57 PM.jpeg',
+    'photos/WhatsApp Image 2026-06-07 at 11.09.57 PM.jpeg',
+    'https://patient-meadow-22.linkyhost.com',
+    'https://spring-night-245.linkyhost.com'
+  ];
+  
+  let checkedCount = 0;
+  candidates.forEach(url => {
+    const img = new Image();
+    img.onload = function () {
+      if (!wishesBackgrounds.includes(url)) {
+        wishesBackgrounds.push(url);
+      }
+      checkedCount++;
+      if (wishesBackgrounds.length === 1) {
+        updateWishesBackground(0);
+      }
+    };
+    img.onerror = function () {
+      checkedCount++;
+    };
+    img.src = url;
+  });
+}
+
 // --- INITIALIZATION ---
 window.addEventListener('DOMContentLoaded', () => {
+  // Resolve all carousel images to direct URLs dynamically
+  document.querySelectorAll('#photos-carousel img').forEach(img => {
+    const originalUrl = img.getAttribute('src');
+    if (originalUrl) {
+      resolveDirectImage(img, originalUrl);
+    }
+  });
+
+  // Start background preloader for Wishes Card
+  initWishesBackgroundSlideshow();
+
   initBackgroundCanvas();
   initConfettiCanvas();
   setupCarousel('#photos-carousel', 800);
-  setupCarousel('#wishes-carousel', 5000);
+  setupCarousel('#wishes-carousel', 5000, (index) => {
+    updateWishesBackground(index);
+  });
   initGallery();
   initPartyPopper();
 
   window.addEventListener('resize', () => {
     resizeCanvas(document.getElementById('bg-canvas'));
   });
-  
+
   console.log('Wishes page loaded successfully');
 });
