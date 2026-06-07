@@ -346,6 +346,7 @@ body {
   z-index: 1;
   display: flex;
   flex-direction: column;
+  align-items: center; /* center all main dashboard children */
   gap: 35px;
   animation: fadeInContainer 1s forwards ease-in-out;
 }
@@ -803,6 +804,7 @@ body {
   color: var(--text-primary);
   margin-bottom: 15px;
   position: relative;
+  text-align: center; /* center-align quote text */
 }
 
 .wish-quote::before {
@@ -812,7 +814,8 @@ body {
   color: rgba(255, 64, 129, 0.2);
   position: absolute;
   top: -25px;
-  left: -15px;
+  left: 50%; /* center quote mark horizontally */
+  transform: translateX(-50%); /* center offset correction */
 }
 
 .wish-author {
@@ -822,6 +825,8 @@ body {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 1px;
+  text-align: center; /* center-align author text */
+  display: block;
 }
 
 .carousel-controls {
