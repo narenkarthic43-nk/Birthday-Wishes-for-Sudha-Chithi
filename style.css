@@ -485,6 +485,9 @@ body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  width: 100%; /* take full width on mobile */
+  max-width: 600px; /* keep bounded on desktop */
+  margin: 0 auto; /* center horizontally */
 }
 
 .celebration-grid {

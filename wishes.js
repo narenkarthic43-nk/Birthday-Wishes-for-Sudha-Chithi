@@ -123,6 +123,24 @@ function setupCarousel(containerSelector, autoplayInterval = null) {
   }
 }
 
+// Pre-load floating background images
+const floatingImages = [
+  'https://www.imghippo.com/i/Cdf8268GiA.jpeg',
+  'https://www.imghippo.com/i/ALQ4740Ads.jpeg',
+  'https://www.imghippo.com/i/nYjt1211zyw.jpeg',
+  'https://www.imghippo.com/i/NBm3871qTU.jpeg',
+  'https://www.imghippo.com/i/fCDc9960RYM.jpeg',
+  'https://www.imghippo.com/i/WRL5733YY.jpeg',
+  'https://www.imghippo.com/i/Jw2292ooQ.jpeg',
+  'https://www.imghippo.com/i/pzZ7033Reg.jpeg',
+  'https://www.imghippo.com/i/PfT1122ISY.jpeg',
+  'https://www.imghippo.com/i/JO3209ZJk.jpeg'
+].map(url => {
+  const img = new Image();
+  img.src = url;
+  return img;
+});
+
 // --- BACKGROUND PARTICLES (SIMPLIFIED) ---
 function initBackgroundCanvas() {
   const canvas = document.getElementById('bg-canvas');
@@ -144,7 +162,7 @@ function initBackgroundCanvas() {
       p.angle += p.angleSpeed;
       p.rotation += p.rotationSpeed;
 
-      if (p.y < -30) {
+      if (p.y < -50) {
         particles[idx] = createBgParticle(canvas.width, canvas.height, false);
       }
 
@@ -156,6 +174,12 @@ function initBackgroundCanvas() {
 
       if (p.shape === 'heart') {
         drawHeart(ctx, 0, 0, p.size);
+      } else if (p.shape === 'photo' && p.imageObj && p.imageObj.complete) {
+        ctx.beginPath();
+        // Clip floating photos in a soft bubble circle
+        ctx.arc(0, 0, p.size * 2.8, 0, Math.PI * 2);
+        ctx.clip();
+        ctx.drawImage(p.imageObj, -p.size * 2.8, -p.size * 2.8, p.size * 5.6, p.size * 5.6);
       } else {
         ctx.beginPath();
         ctx.arc(0, 0, p.size, 0, Math.PI * 2);
@@ -180,18 +204,30 @@ function createBgParticle(width, height, randomY = false) {
   const opacity = Math.random() * 0.2 + 0.1;
   const size = Math.random() * 8 + 4;
 
+  const shapeRand = Math.random();
+  let shape = 'circle';
+  let imageObj = null;
+
+  if (shapeRand < 0.35) {
+    shape = 'heart';
+  } else if (shapeRand < 0.75) {
+    shape = 'photo';
+    imageObj = floatingImages[Math.floor(Math.random() * floatingImages.length)];
+  }
+
   return {
     x: Math.random() * width,
-    y: randomY ? Math.random() * height : height + 30,
+    y: randomY ? Math.random() * height : height + 50,
     size: size,
-    speed: Math.random() * 0.5 + 0.2,
+    speed: Math.random() * 0.4 + 0.15,
     angle: Math.random() * Math.PI * 2,
     angleSpeed: Math.random() * 0.02 - 0.01,
     rotation: Math.random() * Math.PI * 2,
     rotationSpeed: Math.random() * 0.01 - 0.005,
     color: colors[colorIndex].replace('opacity', opacity.toString()),
     opacity: opacity,
-    shape: Math.random() > 0.5 ? 'heart' : 'circle'
+    shape: shape,
+    imageObj: imageObj
   };
 }
 
@@ -214,23 +250,16 @@ function resizeCanvas(canvas) {
 
 // --- IMAGE GALLERY SYSTEM ---
 const galleryImages = [
-  'photos/sudha_hero.jpeg',
-  'photos/sudha_hero (1).jpeg',
-  'photos/sudha_hero (2).jpeg',
-  'photos/sudha_hero (3).jpeg',
-  'photos/sudha_hero (4).jpeg',
-  'photos/sudha_hero (5).jpeg',
-  'photos/sudha_hero (6).jpeg',
-  'photos/sudha_hero (7).jpeg',
-  'photos/sudha_hero (8).jpeg',
-  'photos/sudha_hero (9).jpeg',
-  'photos/sudha_hero (10).jpeg',
-  'photos/sudha_hero (11).jpeg',
-  'photos/sudha_hero (12).jpeg',
-  'photos/sudha_hero (13).jpeg',
-  'photos/sudha_hero (14).jpeg',
-  'photos/sudha_hero (15).jpeg',
-  'photos/sudha_hero (16).jpeg'
+  'https://www.imghippo.com/i/Cdf8268GiA.jpeg',
+  'https://www.imghippo.com/i/ALQ4740Ads.jpeg',
+  'https://www.imghippo.com/i/nYjt1211zyw.jpeg',
+  'https://www.imghippo.com/i/NBm3871qTU.jpeg',
+  'https://www.imghippo.com/i/fCDc9960RYM.jpeg',
+  'https://www.imghippo.com/i/WRL5733YY.jpeg',
+  'https://www.imghippo.com/i/Jw2292ooQ.jpeg',
+  'https://www.imghippo.com/i/pzZ7033Reg.jpeg',
+  'https://www.imghippo.com/i/PfT1122ISY.jpeg',
+  'https://www.imghippo.com/i/JO3209ZJk.jpeg'
 ];
 
 // --- CONFETTI SYSTEM FOR PARTY POPPER ---
