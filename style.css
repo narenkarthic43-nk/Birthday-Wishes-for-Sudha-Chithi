@@ -3,7 +3,7 @@
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Outfit', sans-serif;
   --font-fancy: 'Great Vibes', cursive;
-  
+
   /* Color Palette: Warm Rose Gold, Rich Magenta, Deep Royal Violet */
   --bg-primary: #0a0312;
   --bg-secondary: #160a28;
@@ -14,11 +14,11 @@
   --color-violet: #8e24aa;
   --text-primary: #f5f6fa;
   --text-secondary: #b2bec3;
-  
+
   --glass-bg: rgba(255, 255, 255, 0.04);
   --glass-border: rgba(255, 255, 255, 0.08);
   --glass-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
-  
+
   --transition-smooth: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   --transition-fast: all 0.2s ease-in-out;
 }
@@ -83,7 +83,8 @@ body {
 }
 
 .music-waves {
-  display: none; /* Enabled via JS when music starts */
+  display: none;
+  /* Enabled via JS when music starts */
   align-items: flex-end;
   justify-content: space-between;
   width: 16px;
@@ -108,8 +109,13 @@ body {
 }
 
 @keyframes bounceWaves {
-  0% { height: 2px; }
-  100% { height: 100%; }
+  0% {
+    height: 2px;
+  }
+
+  100% {
+    height: 100%;
+  }
 }
 
 .floating-btn.active .music-waves {
@@ -259,7 +265,7 @@ body {
   color: #4a154b;
   font-weight: bold;
   margin-bottom: 12px;
-  text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
 }
 
 .letter-click-prompt {
@@ -273,7 +279,8 @@ body {
 
 .heart-seal {
   position: absolute;
-  top: -45px; /* Aligns visually with the center of flap when closed */
+  top: -45px;
+  /* Aligns visually with the center of flap when closed */
   left: 50%;
   transform: translate(-50%, 0);
   width: 44px;
@@ -301,8 +308,18 @@ body {
 }
 
 @keyframes pulseHint {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.05); color: var(--color-gold); }
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+    color: var(--color-gold);
+  }
 }
 
 /* Open States for Envelope Animation */
@@ -334,8 +351,13 @@ body {
 }
 
 @keyframes fadeInContainer {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 .celebration-header {
@@ -426,7 +448,9 @@ body {
   grid-template-columns: 1fr;
   gap: 30px;
   justify-items: center;
+  align-items: center;
   max-width: 600px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -434,9 +458,11 @@ body {
   .celebration-grid {
     grid-template-columns: 1fr;
   }
+
   .sparkle-text {
     font-size: 2.2rem;
   }
+
   .highlight-name {
     font-size: 3.5rem;
   }
@@ -478,9 +504,20 @@ body {
   gap: 10px;
 }
 
-.icon-gold { color: var(--color-gold); text-shadow: 0 0 10px var(--color-gold-glow); }
-.icon-pink { color: var(--color-rose); text-shadow: 0 0 10px var(--color-rose-glow); }
-.icon-violet { color: #bb86fc; text-shadow: 0 0 10px rgba(187, 134, 252, 0.4); }
+.icon-gold {
+  color: var(--color-gold);
+  text-shadow: 0 0 10px var(--color-gold-glow);
+}
+
+.icon-pink {
+  color: var(--color-rose);
+  text-shadow: 0 0 10px var(--color-rose-glow);
+}
+
+.icon-violet {
+  color: #bb86fc;
+  text-shadow: 0 0 10px rgba(187, 134, 252, 0.4);
+}
 
 .card-desc {
   font-size: 0.9rem;
@@ -502,10 +539,12 @@ body {
     opacity: 0.6;
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
   }
+
   50% {
     opacity: 1;
     text-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
   }
+
   100% {
     opacity: 0.6;
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
@@ -552,23 +591,28 @@ body {
   bottom: 0;
   height: 50px;
   width: 180px;
-  background: linear-gradient(to right, #402008, #5a2e0c, #402008); /* Chocolate layer */
-  border-bottom: 3px solid #ff4081; /* Strawberry ripple */
+  background: linear-gradient(to right, #402008, #5a2e0c, #402008);
+  /* Chocolate layer */
+  border-bottom: 3px solid #ff4081;
+  /* Strawberry ripple */
 }
 
 .layer-middle {
   bottom: 47px;
   height: 40px;
   width: 160px;
-  background: linear-gradient(to right, #e67e22, #f39c12, #e67e22); /* Orange sponge layer */
-  border-bottom: 3px solid #fff; /* Cream ripple */
+  background: linear-gradient(to right, #e67e22, #f39c12, #e67e22);
+  /* Orange sponge layer */
+  border-bottom: 3px solid #fff;
+  /* Cream ripple */
 }
 
 .layer-top {
   bottom: 84px;
   height: 35px;
   width: 140px;
-  background: linear-gradient(to right, #ff8da1, #ffb3c1, #ff8da1); /* Strawberry layer */
+  background: linear-gradient(to right, #ff8da1, #ffb3c1, #ff8da1);
+  /* Strawberry layer */
 }
 
 /* Icing dripping down */
@@ -627,7 +671,7 @@ body {
   background: linear-gradient(to top, var(--color-rose) 50%, #fff 50%);
   background-size: 100% 10px;
   border-radius: 3px 3px 0 0;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 #candle-2 .candle {
@@ -654,9 +698,17 @@ body {
 }
 
 @keyframes flicker {
-  0% { transform: scale(1) rotate(-2deg); }
-  50% { transform: scale(0.9) rotate(2deg) skewX(-2deg); }
-  100% { transform: scale(1.1) rotate(-1deg); }
+  0% {
+    transform: scale(1) rotate(-2deg);
+  }
+
+  50% {
+    transform: scale(0.9) rotate(2deg) skewX(-2deg);
+  }
+
+  100% {
+    transform: scale(1.1) rotate(-1deg);
+  }
 }
 
 /* Extinguished Candle State */
@@ -677,8 +729,13 @@ body {
 }
 
 @keyframes pulseGold {
-  from { text-shadow: 0 0 5px rgba(255, 215, 0, 0.2); }
-  to { text-shadow: 0 0 15px rgba(255, 215, 0, 0.6); }
+  from {
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.2);
+  }
+
+  to {
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  }
 }
 
 /* --- THE WISHES CAROUSEL --- */
@@ -687,9 +744,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   position: relative;
   height: 100%;
-  justify-content: center;
+  margin: 0 auto;
 }
 
 .carousel-track-wrapper {
@@ -704,7 +762,7 @@ body {
 .carousel-track {
   display: flex;
   width: 100%;
-  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .carousel-slide {
@@ -894,7 +952,7 @@ body {
   flex-direction: column;
   justify-content: space-between;
   min-height: 130px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   position: relative;
   overflow: hidden;
   transition: var(--transition-smooth);
@@ -918,8 +976,15 @@ body {
 }
 
 @keyframes popInCard {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 .wish-card-text {
@@ -1002,6 +1067,7 @@ body {
     opacity: 0;
     transform: scale(0.95);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
@@ -1035,22 +1101,22 @@ body {
     padding: 0 10px;
     gap: 15px;
   }
-  
+
   .gallery-image-wrapper {
     aspect-ratio: 4/5;
     min-height: 350px;
   }
-  
+
   .gallery-nav {
     gap: 20px;
   }
-  
+
   .gallery-btn {
     width: 40px;
     height: 40px;
     font-size: 1rem;
   }
-  
+
   .gallery-counter {
     font-size: 0.9rem;
   }
@@ -1062,22 +1128,22 @@ body {
     max-width: 100%;
     padding: 0 8px;
   }
-  
+
   .gallery-image-wrapper {
     aspect-ratio: 3/4;
     min-height: 280px;
   }
-  
+
   .gallery-nav {
     gap: 15px;
   }
-  
+
   .gallery-btn {
     width: 35px;
     height: 35px;
     font-size: 0.9rem;
   }
-  
+
   .gallery-counter {
     font-size: 0.8rem;
   }
@@ -1116,15 +1182,75 @@ body {
 /* Photos Carousel Card */
 .photos-card {
   width: 100%;
-  max-width: 500px;
-  min-height: 450px;
+  max-width: 600px;
+  /* custom size */
+  min-height: auto;
+  margin: 0 auto;
+  /* center horizontally */
+  align-self: center;
+  /* center in flex layout */
 }
 
 .photos-card .carousel-track-wrapper {
-  min-height: 320px;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  /* extended height aspect ratio */
+  height: auto;
+  min-height: auto;
   border-radius: 12px;
   background: rgba(0, 0, 0, 0.2);
-  padding: 10px;
+  padding: 0;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.photos-card .carousel-slide {
+  padding: 0;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photos-card .carousel-slide::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
+  background-image: inherit;
+  background-size: cover;
+  background-position: center;
+  filter: blur(15px) brightness(0.6);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.photos-card .carousel-slide img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* displays full image centered without crop */
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.photos-card .carousel-indicators {
+  margin-top: 15px;
+}
+
+.carousel-counter {
+  color: var(--color-gold);
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 600;
+  min-width: 60px;
+  text-align: center;
 }
 
 /* Celebration Footer */

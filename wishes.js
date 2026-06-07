@@ -1,71 +1,126 @@
 // --- CAROUSEL SLIDER ENGINE ---
-function initCarousel() {
-  const track = document.getElementById('carousel-track');
+function setupCarousel(containerSelector, autoplayInterval = null) {
+  const container = document.querySelector(containerSelector);
+  if (!container) {
+    console.warn(`Carousel container ${containerSelector} not found`);
+    return;
+  }
+  
+  const track = container.querySelector('.carousel-track');
   if (!track) {
-    console.error('Carousel track not found');
+    console.warn(`Carousel track not found in ${containerSelector}`);
     return;
   }
   
   const slides = Array.from(track.children);
-  const nextBtn = document.getElementById('next-btn');
-  const prevBtn = document.getElementById('prev-btn');
-  const indicatorsContainer = document.getElementById('carousel-indicators');
+  if (slides.length === 0) return;
+  
+  const nextBtn = container.querySelector('.next-btn');
+  const prevBtn = container.querySelector('.prev-btn');
+  const indicatorsContainer = container.querySelector('.carousel-indicators');
 
-  console.log('Initializing carousel with', slides.length, 'slides');
+  console.log('Initializing carousel', containerSelector, 'with', slides.length, 'slides');
 
   // Make first slide active
-  if (slides.length > 0) {
-    slides[0].classList.add('active');
-    console.log('First slide activated');
+  slides[0].classList.add('active');
+
+  // Set background-image on each slide for blurred background effect (if photos carousel)
+  if (containerSelector === '#photos-carousel') {
+    slides.forEach(slide => {
+      const img = slide.querySelector('img');
+      if (img) {
+        slide.style.backgroundImage = `url('${img.getAttribute('src')}')`;
+      }
+    });
   }
 
   // Create indicator dots
-  slides.forEach((_, index) => {
-    const dot = document.createElement('button');
-    dot.classList.add('carousel-indicator');
-    dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-    indicatorsContainer.appendChild(dot);
-  });
-  
-  if (indicatorsContainer.children.length > 0) {
-    indicatorsContainer.children[0].classList.add('active');
+  if (indicatorsContainer) {
+    indicatorsContainer.innerHTML = '';
+    slides.forEach((_, index) => {
+      const dot = document.createElement('button');
+      dot.classList.add('carousel-indicator');
+      dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+      indicatorsContainer.appendChild(dot);
+    });
+    if (indicatorsContainer.children.length > 0) {
+      indicatorsContainer.children[0].classList.add('active');
+    }
   }
+
+  const counterContainer = container.querySelector('.carousel-counter');
+  
+  const updateCounter = () => {
+    if (counterContainer) {
+      counterContainer.textContent = `${activeIndex + 1} / ${slides.length}`;
+    }
+  };
 
   let activeIndex = 0;
   const updateSlides = (newIndex) => {
-    // Remove active from old slide and indicator
     slides[activeIndex].classList.remove('active');
-    if (indicatorsContainer.children[activeIndex]) {
+    if (indicatorsContainer && indicatorsContainer.children[activeIndex]) {
       indicatorsContainer.children[activeIndex].classList.remove('active');
     }
 
-    // Add active to new slide and indicator
     activeIndex = newIndex;
     slides[activeIndex].classList.add('active');
-    if (indicatorsContainer.children[activeIndex]) {
+    if (indicatorsContainer && indicatorsContainer.children[activeIndex]) {
       indicatorsContainer.children[activeIndex].classList.add('active');
     }
 
-    // Shift track
+    updateCounter();
     track.style.transform = `translateX(-${activeIndex * 100}%)`;
   };
 
-  nextBtn.addEventListener('click', () => {
-    activeIndex = (activeIndex + 1) % slides.length;
-    updateSlides(activeIndex);
-  });
+  // Set initial counter value
+  updateCounter();
 
-  prevBtn.addEventListener('click', () => {
-    activeIndex = (activeIndex - 1 + slides.length) % slides.length;
-    updateSlides(activeIndex);
-  });
-  
-  // Set up indicator clicks
-  Array.from(indicatorsContainer.children).forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      updateSlides(index);
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const nextIndex = (activeIndex + 1) % slides.length;
+      updateSlides(nextIndex);
+      if (autoplayInterval) restartAutoplay();
     });
-  });
+  }
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      const prevIndex = (activeIndex - 1 + slides.length) % slides.length;
+      updateSlides(prevIndex);
+      if (autoplayInterval) restartAutoplay();
+    });
+  }
+  
+  if (indicatorsContainer) {
+    Array.from(indicatorsContainer.children).forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        updateSlides(index);
+        if (autoplayInterval) restartAutoplay();
+      });
+    });
+  }
+
+  // Autoplay
+  let autoplayTimer = null;
+  const startAutoplay = () => {
+    if (!autoplayInterval) return;
+    autoplayTimer = setInterval(() => {
+      const nextIndex = (activeIndex + 1) % slides.length;
+      updateSlides(nextIndex);
+    }, autoplayInterval);
+  };
+
+  const restartAutoplay = () => {
+    if (autoplayTimer) {
+      clearInterval(autoplayTimer);
+      startAutoplay();
+    }
+  };
+
+  if (autoplayInterval) {
+    startAutoplay();
+  }
 }
 
 // --- BACKGROUND PARTICLES (SIMPLIFIED) ---
@@ -328,7 +383,6 @@ function initGallery() {
   const nextBtn = document.getElementById('gallery-next-btn');
   
   if (!prevBtn || !nextBtn) {
-    console.error('Gallery buttons not found');
     return;
   }
 
@@ -403,7 +457,8 @@ function displayGalleryImage(index) {
 window.addEventListener('DOMContentLoaded', () => {
   initBackgroundCanvas();
   initConfettiCanvas();
-  initCarousel();
+  setupCarousel('#photos-carousel', 800);
+  setupCarousel('#wishes-carousel', 5000);
   initGallery();
   initPartyPopper();
 

@@ -522,7 +522,9 @@ window.extinguishCandle = extinguishCandle;
 // --- CAROUSEL SLIDER ENGINE ---
 function initCarousel() {
   const track = document.getElementById('carousel-track');
+  if (!track) return;
   const slides = Array.from(track.children);
+  if (slides.length === 0) return;
   const nextBtn = document.getElementById('next-btn');
   const prevBtn = document.getElementById('prev-btn');
   const indicatorsContainer = document.getElementById('carousel-indicators');
@@ -562,11 +564,11 @@ function initCarousel() {
     moveToSlide(prevIndex);
   });
   
-  // Autoplay carousel slides
+  // Autoplay carousel slides (0.8 second interval)
   let carouselTimer = setInterval(() => {
     let nextIndex = (currentSlide + 1) % slides.length;
     moveToSlide(nextIndex);
-  }, 7000);
+  }, 800);
   
   // Reset timer on button click
   const resetTimer = () => {
@@ -574,7 +576,7 @@ function initCarousel() {
     carouselTimer = setInterval(() => {
       let nextIndex = (currentSlide + 1) % slides.length;
       moveToSlide(nextIndex);
-    }, 7000);
+    }, 800);
   };
   
   nextBtn.addEventListener('click', resetTimer);
@@ -587,6 +589,8 @@ function initWishesBoard() {
   const submitBtn = document.getElementById('submit-wish-btn');
   const senderInput = document.getElementById('wish-sender');
   const textInput = document.getElementById('wish-text');
+  
+  if (!submitBtn || !board) return;
   
   // Load wishes
   const savedWishes = localStorage.getItem('chithi_birthday_wishes');
