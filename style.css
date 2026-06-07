@@ -480,7 +480,7 @@ body {
   transform: scale(1);
   transition: opacity 0.8s ease, transform 0.8s ease;
   position: relative;
-  background-image: linear-gradient(rgba(10, 3, 18, 0.82), rgba(22, 10, 40, 0.88)), url('photos/WhatsApp%20Image%202026-06-07%20at%2011.09.57%20PM.jpeg');
+  background-image: linear-gradient(rgba(10, 3, 18, 0.82), rgba(22, 10, 40, 0.88)), url('https://little-pond-461.linkyhost.com');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1239,7 +1239,8 @@ body {
   z-index: 2;
   width: 100%;
   height: 100%;
-  object-fit: contain; /* displays full image centered without crop */
+  object-fit: contain;
+  /* displays full image centered without crop */
   border-radius: 0;
   box-shadow: none;
 }
