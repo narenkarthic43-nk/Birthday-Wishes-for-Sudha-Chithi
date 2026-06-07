@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday, Sudha Chithi!</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Floating Particles Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Ambient Sound / Music Toggle -->
+  <button id="music-toggle" aria-label="Toggle Music" class="floating-btn">
+    <i class="fa-solid fa-music"></i>
+    <span class="music-waves">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+  </button>
+
+  <!-- Step 1: Greeting Envelope -->
+  <div class="container" id="envelope-container">
+    <div class="envelope-wrapper">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="pocket"></div>
+        <div class="letter">
+          <div class="letter-content">
+            <h3 class="letter-from">With love, from all of us...</h3>
+            <h2 class="letter-title">Sudha Chithi</h2>
+            <p class="letter-click-prompt">Click to open your special celebration card</p>
+            <div class="heart-seal"><i class="fa-solid fa-heart"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="envelope-hint">Tap the envelope to open</div>
+  </div>
+
+  <!-- Step 2: Main Celebration Dashboard (Hidden initially) -->
+  <div class="main-celebration hidden" id="main-celebration">
+
+    <!-- Hero Header -->
+    <header class="celebration-header">
+      <h1 class="sparkle-text">Happy Birthday, <br><span class="highlight-name">Sudha Chithi!</span></h1>
+      <div class="birthday-info">
+        <span class="birthday-date">June 8</span>
+        <span class="birthday-separator">•</span>
+        <span class="birthday-age">47 Birthday</span>
+      </div>
+      <p class="celebration-subtitle">Wishing the sweetest, most wonderful aunt in the world a day as bright and
+        beautiful as she is!</p>
+    </header>
+
+    <!-- Celebration Grid Layout -->
+    <div class="celebration-grid">
+
+      <!-- Left Column: The Interactive Birthday Cake -->
+      <section id="cake-section" class="grid-card cake-card glassmorphism">
+        <h2 class="card-title"><i class="fa-solid fa-cake-candles icon-gold"></i> Blow Your Birthday Candles</h2>
+        <p class="card-desc">Make a wish in your heart, then tap each candle to blow it out!</p>
+
+        <p class="candle-instruction">👇 Click Each Candle 👇</p>
+
+        <div class="cake-container">
+          <div class="cake">
+            <div class="plate"></div>
+            <div class="layer layer-bottom"></div>
+            <div class="layer layer-middle"></div>
+            <div class="layer layer-top"></div>
+            <div class="icing"></div>
+            <div class="candles-wrapper">
+              <!-- Candle 1 -->
+              <div class="candle-container" id="candle-1" onclick="extinguishCandle(1)">
+                <div class="flame"></div>
+                <div class="candle"></div>
+              </div>
+              <!-- Candle 2 -->
+              <div class="candle-container" id="candle-2" onclick="extinguishCandle(2)">
+                <div class="flame"></div>
+                <div class="candle"></div>
+              </div>
+              <!-- Candle 3 -->
+              <div class="candle-container" id="candle-3" onclick="extinguishCandle(3)">
+                <div class="flame"></div>
+                <div class="candle"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="cake-status" class="celebration-status">3 candles are glowing bright!</div>
+      </section>
+
+  <!-- Visual surprises & Interactive button -->
+    <div class="extra-surprises">
+      <button id="party-popper-btn" class="action-btn popper-btn">
+        <i class="fa-solid fa-gift"></i> Release Magic Shower!
+      </button>
+    </div>
+
+    <footer class="celebration-footer">
+      <p>Made with love & respect for Sudha Chithi • June 2026</p>
+    </footer>
+
+  </div>
+
+  <!-- Confetti Canvas Overlay -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="app.js"></script>
+</body>
+
+</html>

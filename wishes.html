@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heartfelt Wishes - Happy Birthday, Sudha Chithi!</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,600;0,800;1,500&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom Styling -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Floating Particles Canvas Background -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Main Celebration Dashboard -->
+  <div class="main-celebration" id="main-celebration">
+
+    <!-- Hero Header -->
+    <header class="celebration-header">
+      <h1 class="sparkle-text">Heartfelt Wishes <br><span class="highlight-name">for You!</span></h1>
+      <p class="celebration-subtitle">Messages filled with love and warmth for Sudha Chithi</p>
+    </header>
+
+    <!-- Image Gallery Section -->
+    <section id="gallery-section" class="grid-card gallery-card glassmorphism">
+      <h2 class="card-title"><i class="fa-solid fa-images icon-gold"></i> Beautiful Moments Together</h2>
+      <div class="gallery-grid" id="gallery-grid">
+        <!-- Images will be loaded dynamically by JavaScript -->
+      </div>
+      <div class="gallery-nav">
+        <button id="gallery-prev-btn" class="gallery-btn" aria-label="Previous">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span id="gallery-counter" class="gallery-counter">1 / 17</span>
+        <button id="gallery-next-btn" class="gallery-btn" aria-label="Next">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </section>
+    <!-- Celebration Grid Layout -->
+    <div class="celebration-grid" style="grid-template-columns: 1fr;">
+
+      <!-- Carousel of Heartfelt Wishes -->
+      <section id="wishes-section" class="grid-card wishes-card glassmorphism">
+        <h2 class="card-title"><i class="fa-solid fa-heart-pulse icon-pink"></i> Heartfelt Wishes for You</h2>
+
+        <div class="carousel-container">
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carousel-track">
+              <!-- Wish 1 -->
+              <div class="carousel-slide">
+                <blockquote class="wish-quote">
+                  "To my dearest Sudha Chithi, thank you for always being more like a mother.
+                  Your gentle guidance mean the absolute world to me. Have a spectacular birthday!"
+                </blockquote>
+                <cite class="wish-author">— With love & gratitude</cite>
+              </div>
+              <!-- Wish 2 -->
+              <div class="carousel-slide">
+                <blockquote class="wish-quote">
+                  "Happy Birthday to the aunt who has the biggest heart and the most radiant smile! May God bless you
+                  with abundant health, endless happiness, and peace in the years ahead, Sudha Chithi."
+                </blockquote>
+                <cite class="wish-author">— Wishing you the very best</cite>
+              </div>
+              <!-- Wish 3 -->
+              <div class="carousel-slide">
+                <blockquote class="wish-quote">
+                  "Sudha Chithi, you fill our family gatherings with joy, laughter, and your amazing energy. You make
+                  every ordinary day special just by being in it. Wishing you a day filled with surprise and joy!"
+                </blockquote>
+                <cite class="wish-author">— From all the children</cite>
+              </div>
+              <!-- Wish 4 -->
+              <div class="carousel-slide">
+                <blockquote class="wish-quote">
+                  "May this new milestone bring you the sweetest moments and unlock new chapters of laughter and
+                  blessings. You deserve all the beauty and kindness you give to everyone around you, Chithi!"
+                </blockquote>
+                <cite class="wish-author">— Always in our hearts</cite>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carousel Navigation Controls -->
+          <div class="carousel-controls">
+            <button class="carousel-btn prev-btn" id="prev-btn" aria-label="Previous Wish">
+              <i class="fa-solid fa-circle-chevron-left"></i>
+            </button>
+            <div class="carousel-indicators" id="carousel-indicators"></div>
+            <button class="carousel-btn next-btn" id="next-btn" aria-label="Next Wish">
+              <i class="fa-solid fa-circle-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    
+
+    <!-- Visual surprises & Interactive button -->
+    <div class="extra-surprises">
+      <button id="party-popper-btn" class="action-btn popper-btn">
+        <i class="fa-solid fa-gift"></i> Release Magic Shower!
+      </button>
+    </div>
+
+    <footer class="celebration-footer">
+      <p>Made with love & respect for Sudha Chithi • June 2026</p>
+    </footer>
+
+  </div>
+
+  <!-- Confetti Canvas Overlay -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <script src="wishes.js"></script>
+</body>
+
+</html>
