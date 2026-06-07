@@ -574,7 +574,8 @@ function initWishesBackgroundSlideshow() {
     'photos.pdf/WhatsApp Image 2026-06-07 at 11.09.57 PM.jpeg',
     'photos/WhatsApp Image 2026-06-07 at 11.09.57 PM.jpeg',
     'https://patient-meadow-22.linkyhost.com',
-    'https://spring-night-245.linkyhost.com'
+    'https://spring-night-245.linkyhost.com',
+    'https://little-pond-461.linkyhost.com'
   ];
   
   let checkedCount = 0;
