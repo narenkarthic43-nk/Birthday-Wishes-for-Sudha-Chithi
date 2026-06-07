@@ -214,23 +214,23 @@ function resizeCanvas(canvas) {
 
 // --- IMAGE GALLERY SYSTEM ---
 const galleryImages = [
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.39 PM (1).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.39 PM.jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.40 PM (1).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.40 PM (2).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.40 PM (3).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.40 PM.jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.41 PM (1).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.41 PM (2).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.41 PM.jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.42 PM (1).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.42 PM (2).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.42 PM.jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.43 PM (1).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.43 PM (2).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.43 PM.jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.44 PM (1).jpeg',
-  'Sudha chithi/WhatsApp Image 2026-06-07 at 8.14.44 PM.jpeg'
+  '.jpg/sudha_hero.jpeg',
+  '.jpg/sudha_hero (1).jpeg',
+  '.jpg/sudha_hero (2).jpeg',
+  '.jpg/sudha_hero (3).jpeg',
+  '.jpg/sudha_hero (4).jpeg',
+  '.jpg/sudha_hero (5).jpeg',
+  '.jpg/sudha_hero (6).jpeg',
+  '.jpg/sudha_hero (7).jpeg',
+  '.jpg/sudha_hero (8).jpeg',
+  '.jpg/sudha_hero (9).jpeg',
+  '.jpg/sudha_hero (10).jpeg',
+  '.jpg/sudha_hero (11).jpeg',
+  '.jpg/sudha_hero (12).jpeg',
+  '.jpg/sudha_hero (13).jpeg',
+  '.jpg/sudha_hero (14).jpeg',
+  '.jpg/sudha_hero (15).jpeg',
+  '.jpg/sudha_hero (16).jpeg'
 ];
 
 // --- CONFETTI SYSTEM FOR PARTY POPPER ---
