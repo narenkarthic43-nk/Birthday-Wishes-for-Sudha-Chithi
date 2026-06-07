@@ -31,22 +31,49 @@
       <p class="celebration-subtitle">Messages filled with love and warmth for Sudha Chithi</p>
     </header>
 
-    <!-- Image Gallery Section -->
-    <section id="gallery-section" class="grid-card gallery-card glassmorphism">
-      <h2 class="card-title"><i class="fa-solid fa-images icon-gold"></i> Beautiful Moments Together</h2>
-      <div class="gallery-grid" id="gallery-grid">
-        <!-- Images will be loaded dynamically by JavaScript -->
-      </div>
-      <div class="gallery-nav">
-        <button id="gallery-prev-btn" class="gallery-btn" aria-label="Previous">
-          <i class="fa-solid fa-chevron-left"></i>
-        </button>
-        <span id="gallery-counter" class="gallery-counter">1 / 17</span>
-        <button id="gallery-next-btn" class="gallery-btn" aria-label="Next">
-          <i class="fa-solid fa-chevron-right"></i>
-        </button>
-      </div>
-    </section>
+         <!-- Right Column: Photo Carousel Gallery -->
+      <section id="photos-section" class="grid-card photos-card glassmorphism">
+        <h2 class="card-title"><i class="fa-solid fa-images icon-gold"></i> Memories & Moments</h2>
+        <p class="card-desc">A beautiful collection of cherished memories with Sudha Chithi</p>
+        
+        <div class="carousel-container">
+          <div class="carousel-track-wrapper">
+            <div class="carousel-track" id="carousel-track">
+              <div class="carousel-slide"><img src=".jpg/sudha_hero.jpeg" alt="Memory 1"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (1).jpeg" alt="Memory 2"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (2).jpeg" alt="Memory 3"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (3).jpeg" alt="Memory 4"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (4).jpeg" alt="Memory 5"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (5).jpeg" alt="Memory 6"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (6).jpeg" alt="Memory 7"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (7).jpeg" alt="Memory 8"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (8).jpeg" alt="Memory 9"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (9).jpeg" alt="Memory 10"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (10).jpeg" alt="Memory 11"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (11).jpeg" alt="Memory 12"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (12).jpeg" alt="Memory 13"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (13).jpeg" alt="Memory 14"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (14).jpeg" alt="Memory 15"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (15).jpeg" alt="Memory 16"></div>
+              <div class="carousel-slide"><img src=".jpg/sudha_hero (16).jpeg" alt="Memory 17"></div>
+            </div>
+          </div>
+
+          <div class="carousel-controls">
+            <button id="prev-btn" class="carousel-btn" aria-label="Previous photo">
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <button id="next-btn" class="carousel-btn" aria-label="Next photo">
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+
+          <div class="carousel-indicators" id="carousel-indicators"></div>
+        </div>
+      </section>
+
+    </div>
+
     <!-- Celebration Grid Layout -->
     <div class="celebration-grid" style="grid-template-columns: 1fr;">
 

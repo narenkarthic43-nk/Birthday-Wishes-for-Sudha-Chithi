@@ -696,7 +696,7 @@ body {
   width: 100%;
   overflow: hidden;
   margin-bottom: 20px;
-  min-height: 180px;
+  min-height: 300px;
   display: flex;
   align-items: center;
 }
@@ -716,6 +716,16 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .carousel-slide.active {
@@ -1101,6 +1111,20 @@ body {
   font-weight: 600;
   min-width: 80px;
   text-align: center;
+}
+
+/* Photos Carousel Card */
+.photos-card {
+  width: 100%;
+  max-width: 500px;
+  min-height: 450px;
+}
+
+.photos-card .carousel-track-wrapper {
+  min-height: 320px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 10px;
 }
 
 /* Celebration Footer */
