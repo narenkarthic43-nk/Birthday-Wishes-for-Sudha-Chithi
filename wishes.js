@@ -214,23 +214,23 @@ function resizeCanvas(canvas) {
 
 // --- IMAGE GALLERY SYSTEM ---
 const galleryImages = [
-  '.jpg/sudha_hero.jpeg',
-  '.jpg/sudha_hero (1).jpeg',
-  '.jpg/sudha_hero (2).jpeg',
-  '.jpg/sudha_hero (3).jpeg',
-  '.jpg/sudha_hero (4).jpeg',
-  '.jpg/sudha_hero (5).jpeg',
-  '.jpg/sudha_hero (6).jpeg',
-  '.jpg/sudha_hero (7).jpeg',
-  '.jpg/sudha_hero (8).jpeg',
-  '.jpg/sudha_hero (9).jpeg',
-  '.jpg/sudha_hero (10).jpeg',
-  '.jpg/sudha_hero (11).jpeg',
-  '.jpg/sudha_hero (12).jpeg',
-  '.jpg/sudha_hero (13).jpeg',
-  '.jpg/sudha_hero (14).jpeg',
-  '.jpg/sudha_hero (15).jpeg',
-  '.jpg/sudha_hero (16).jpeg'
+  'photos/sudha_hero.jpeg',
+  'photos/sudha_hero (1).jpeg',
+  'photos/sudha_hero (2).jpeg',
+  'photos/sudha_hero (3).jpeg',
+  'photos/sudha_hero (4).jpeg',
+  'photos/sudha_hero (5).jpeg',
+  'photos/sudha_hero (6).jpeg',
+  'photos/sudha_hero (7).jpeg',
+  'photos/sudha_hero (8).jpeg',
+  'photos/sudha_hero (9).jpeg',
+  'photos/sudha_hero (10).jpeg',
+  'photos/sudha_hero (11).jpeg',
+  'photos/sudha_hero (12).jpeg',
+  'photos/sudha_hero (13).jpeg',
+  'photos/sudha_hero (14).jpeg',
+  'photos/sudha_hero (15).jpeg',
+  'photos/sudha_hero (16).jpeg'
 ];
 
 // --- CONFETTI SYSTEM FOR PARTY POPPER ---
